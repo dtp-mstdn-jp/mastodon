@@ -6,6 +6,10 @@ import { displaySensitiveMedia, me } from '../../../initial_state';
 import IconButton from '../../../components/icon_button';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
+import {
+  favourite,
+  unfavourite,
+} from '../../../actions/interactions';
 
 const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },

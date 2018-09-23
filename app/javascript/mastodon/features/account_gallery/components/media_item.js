@@ -6,10 +6,6 @@ import { displaySensitiveMedia, me } from '../../../initial_state';
 import IconButton from '../../../components/icon_button';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-import {
-  favourite,
-  unfavourite,
-} from '../../../actions/interactions';
 
 const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
@@ -19,7 +15,7 @@ export default @injectIntl
 class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    onFavouriteClick: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     media: ImmutablePropTypes.map.isRequired,
   };
@@ -28,13 +24,8 @@ class MediaItem extends ImmutablePureComponent {
     visible: !this.props.media.getIn(['status', 'sensitive']) || displaySensitiveMedia,
   };
 
-  handleFavouriteClick = () => {
-    const status = this.props.media.get('status');
-    if (status.get('favourited')) {
-      this.props.dispatch(unfavourite(status));
-    } else {
-      this.props.dispatch(favourite(status));
-    }
+  handleFavouriteClick = (status) => {
+    this.props.onFavouriteClick(status);
   }
 
   handleClick = () => {
@@ -81,7 +72,7 @@ class MediaItem extends ImmutablePureComponent {
           {label}
         </Permalink>
         <div className='account-gallery__action-bar'>
-          <IconButton className='account-gallery__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
+          <IconButton className='account-gallery__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick(status)} />
         </div>
       </div>
     );

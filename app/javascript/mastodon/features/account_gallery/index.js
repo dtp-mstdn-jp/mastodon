@@ -13,6 +13,10 @@ import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import { ScrollContainer } from 'react-router-scroll-4';
 import LoadMore from '../../components/load_more';
+import {
+  favourite,
+  unfavourite,
+} from '../../../actions/interactions';
 
 const mapStateToProps = (state, props) => ({
   medias: getAccountGallery(state, props.params.accountId),
@@ -90,6 +94,14 @@ class AccountGallery extends ImmutablePureComponent {
     this.handleScrollToBottom();
   }
 
+  handleFavouriteClick = (status) => {
+    if (status.get('favourited')) {
+      this.props.dispatch(unfavourite(status));
+    } else {
+      this.props.dispatch(favourite(status));
+    }
+  }
+
   render () {
     const { medias, shouldUpdateScroll, isLoading, hasMore } = this.props;
 
@@ -125,6 +137,7 @@ class AccountGallery extends ImmutablePureComponent {
                 <MediaItem
                   key={media.get('id')}
                   media={media}
+                  onFavouriteClick={(status) => this.handleFavouriteClick(status)}
                 />
               ))}
               {loadOlder}

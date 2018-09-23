@@ -15,7 +15,6 @@ export default @injectIntl
 class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
-    onFavourite: PropTypes.func,
     intl: PropTypes.object.isRequired,
     media: ImmutablePropTypes.map.isRequired,
   };
@@ -25,7 +24,12 @@ class MediaItem extends ImmutablePureComponent {
   };
 
   handleFavouriteClick = () => {
-    this.props.onFavourite(this.props.media.get('status'));
+    status = this.props.media.get('status');
+    if (status.get('favourited')) {
+      this.props.dispatch(unfavourite(status));
+    } else {
+      this.props.dispatch(favourite(status));
+    }
   }
 
   handleClick = () => {

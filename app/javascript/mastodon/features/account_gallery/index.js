@@ -52,7 +52,6 @@ class AccountGallery extends ImmutablePureComponent {
     medias: ImmutablePropTypes.list.isRequired,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
-    onFavourite: PropTypes.func,
   };
 
   componentDidMount () {
@@ -92,7 +91,7 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
   render () {
-    const { medias, shouldUpdateScroll, isLoading, hasMore, onFavourite  } = this.props;
+    const { medias, shouldUpdateScroll, isLoading, hasMore } = this.props;
 
     let loadOlder = null;
 
@@ -126,7 +125,6 @@ class AccountGallery extends ImmutablePureComponent {
                 <MediaItem
                   key={media.get('id')}
                   media={media}
-                  onFavourite={onFavourite}
                 />
               ))}
               {loadOlder}

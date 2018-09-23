@@ -16,6 +16,7 @@ class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
     onFavourite: PropTypes.func,
+    intl: PropTypes.object.isRequired,
     media: ImmutablePropTypes.map.isRequired,
   };
 

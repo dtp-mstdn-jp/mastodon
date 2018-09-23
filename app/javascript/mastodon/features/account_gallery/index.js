@@ -125,6 +125,7 @@ class AccountGallery extends ImmutablePureComponent {
                 <MediaItem
                   key={media.get('id')}
                   media={media}
+                  {...other}
                 />
               ))}
               {loadOlder}

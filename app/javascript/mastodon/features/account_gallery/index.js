@@ -16,7 +16,7 @@ import LoadMore from '../../components/load_more';
 import {
   favourite,
   unfavourite,
-} from '../actions/interactions';
+} from '../../actions/interactions';
 
 const mapStateToProps = (state, props) => ({
   medias: getAccountGallery(state, props.params.accountId),

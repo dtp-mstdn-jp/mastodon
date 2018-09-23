@@ -72,7 +72,7 @@ class MediaItem extends ImmutablePureComponent {
           {label}
         </Permalink>
         <div className='account-gallery__action-bar'>
-          <IconButton className='account-gallery__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick(status)} />
+          <IconButton className='account-gallery__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
         </div>
       </div>
     );

@@ -2,9 +2,9 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Permalink from '../../../components/permalink';
-import { displaySensitiveMedia } from '../../../initial_state';
+import { displaySensitiveMedia, me } from '../../../initial_state';
+import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-import { me } from '../../../initial_state';
 
 const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },

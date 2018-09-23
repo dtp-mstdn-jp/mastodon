@@ -38,7 +38,7 @@ class MediaItem extends ImmutablePureComponent {
   }
 
   render () {
-    const { media } = this.props;
+    const { media, intl } = this.props;
     const { visible } = this.state;
     const status = media.get('status');
     const focusX = media.getIn(['meta', 'focus', 'x']);

@@ -24,8 +24,8 @@ class MediaItem extends ImmutablePureComponent {
     visible: !this.props.media.getIn(['status', 'sensitive']) || displaySensitiveMedia,
   };
 
-  handleFavouriteClick = (status) => {
-    this.props.onFavouriteClick(status);
+  handleFavouriteClick = () => {
+    this.props.onFavouriteClick(media.get('status'));
   }
 
   handleClick = () => {

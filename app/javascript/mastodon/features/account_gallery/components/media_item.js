@@ -3,12 +3,14 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Permalink from '../../../components/permalink';
 import { displaySensitiveMedia } from '../../../initial_state';
+import { defineMessages, injectIntl } from 'react-intl';
 import { me } from '../../../initial_state';
 
 const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
 });
 
+export default @injectIntl
 export default class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {

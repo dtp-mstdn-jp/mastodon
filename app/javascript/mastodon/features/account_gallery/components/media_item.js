@@ -24,7 +24,7 @@ class MediaItem extends ImmutablePureComponent {
   };
 
   handleFavouriteClick = () => {
-    status = this.props.media.get('status');
+    const status = this.props.media.get('status');
     if (status.get('favourited')) {
       this.props.dispatch(unfavourite(status));
     } else {

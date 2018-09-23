@@ -91,7 +91,7 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
   render () {
-    const { medias, shouldUpdateScroll, isLoading, hasMore } = this.props;
+    const { medias, shouldUpdateScroll, isLoading, hasMore, ...other  } = this.props;
 
     let loadOlder = null;
 

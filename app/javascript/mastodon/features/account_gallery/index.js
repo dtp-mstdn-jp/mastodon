@@ -16,6 +16,8 @@ import LoadMore from '../../components/load_more';
 import {
   favourite,
   unfavourite,
+  reblog,
+  unreblog,
 } from '../../actions/interactions';
 
 const mapStateToProps = (state, props) => ({
@@ -102,6 +104,14 @@ class AccountGallery extends ImmutablePureComponent {
     }
   }
 
+  handleReblogClick = (status) => {
+    if (status.get('reblogged')) {
+      this.props.dispatch(unreblog(status));
+    } else {
+      this.props.dispatch(reblog(status));
+    }
+  }
+  
   render () {
     const { medias, shouldUpdateScroll, isLoading, hasMore } = this.props;
 
@@ -137,7 +147,8 @@ class AccountGallery extends ImmutablePureComponent {
                 <MediaItem
                   key={media.get('id')}
                   media={media}
-                  onFavouriteClick={this.handleFavouriteClick}
+                  onFavourite={this.handleFavouriteClick}
+                  onReblog={this.handleReblogClick}
                 />
               ))}
               {loadOlder}

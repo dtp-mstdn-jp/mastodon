@@ -8,6 +8,10 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
+  reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
+  reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost to original audience' },
+  cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
+  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
 });
 
@@ -15,7 +19,8 @@ export default @injectIntl
 class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
-    onFavouriteClick: PropTypes.func,
+    onFavourite: PropTypes.func,
+    onReblog: PropTypes.func,
     intl: PropTypes.object.isRequired,
     media: ImmutablePropTypes.map.isRequired,
   };
@@ -25,7 +30,11 @@ class MediaItem extends ImmutablePureComponent {
   };
 
   handleFavouriteClick = () => {
-    this.props.onFavouriteClick(this.props.media.get('status'));
+    this.props.onFavourite(this.props.media.get('status'));
+  }
+
+  handleReblogClick = (e) => {
+    this.props.onReblog(this.props.media.get('status'), e);
   }
 
   handleClick = () => {
@@ -47,6 +56,15 @@ class MediaItem extends ImmutablePureComponent {
     const y = ((focusY / -2) + .5) * 100;
     const style = {};
     const anonymousAccess    = !me;
+    const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
+
+    let reblogIcon = 'retweet';
+
+    if (status.get('visibility') === 'direct') {
+      reblogIcon = 'envelope';
+    } else if (status.get('visibility') === 'private') {
+      reblogIcon = 'lock';
+    }
 
     let label, icon;
 
@@ -72,6 +90,7 @@ class MediaItem extends ImmutablePureComponent {
           {label}
         </Permalink>
         <div className='account-gallery__action-bar'>
+          <IconButton className='account-gallery__action-bar-button' disabled={anonymousAccess || !publicStatus} active={status.get('reblogged')} pressed={status.get('reblogged')} title={!publicStatus ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
           <IconButton className='account-gallery__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
         </div>
       </div>

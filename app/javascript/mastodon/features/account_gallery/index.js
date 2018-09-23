@@ -137,7 +137,7 @@ class AccountGallery extends ImmutablePureComponent {
                 <MediaItem
                   key={media.get('id')}
                   media={media}
-                  onFavouriteClick={(status) => this.handleFavouriteClick(status)}
+                  onFavouriteClick={this.handleFavouriteClick}
                 />
               ))}
               {loadOlder}

@@ -11,7 +11,7 @@ const messages = defineMessages({
 });
 
 export default @injectIntl
-export default class MediaItem extends ImmutablePureComponent {
+class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
     onFavourite: PropTypes.func,

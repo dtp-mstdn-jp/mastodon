@@ -1050,6 +1050,39 @@
   width: 23.15px;
 }
 
+.account-gallery__action-bar {
+  align-items: center;
+  display: flex;
+  margin-top: 8px;
+
+  &__counter {
+    display: inline-flex;
+    margin-right: 11px;
+    align-items: center;
+
+    .account-gallery__action-bar-button {
+      margin-right: 4px;
+    }
+
+    &__label {
+      display: inline-block;
+      width: 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: $action-button-color;
+    }
+  }
+}
+
+.account-gallery__action-bar-button {
+  margin-right: 18px;
+}
+
+.account-gallery__action-bar-dropdown {
+  height: 23.15px;
+  width: 23.15px;
+}
+
 .detailed-status__action-bar-dropdown {
   flex: 1 1 auto;
   display: flex;

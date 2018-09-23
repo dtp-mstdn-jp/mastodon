@@ -19,6 +19,7 @@ export default @injectIntl
 class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     media: ImmutablePropTypes.map.isRequired,
   };

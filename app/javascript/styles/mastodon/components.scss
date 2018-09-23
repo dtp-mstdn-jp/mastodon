@@ -1051,6 +1051,8 @@
 }
 
 .account-gallery__action-bar {
+  position: absolute;
+  bottom: 0;
   align-items: center;
   display: flex;
   margin-top: 8px;
